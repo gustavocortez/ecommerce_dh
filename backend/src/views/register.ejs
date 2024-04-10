@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <main>    
+       <div class="container">
+         <div class="registrate">
+           <form action="/usuario/register" method="post" class="crearregistro" enctype="multipart/form-data">
+               <label class="titulo-registro">Registrate</label>
+               <div class="control-etiqueta">
+                  <label class="etiqueta-formulario">Nombre</label>
+               </div>
+               <div class="control-formulario">
+                   <input type="text" name="nombre" class="input-form" id="inputNombre" placeholder="" value="<%= locals.old ? old.nombre : null %>">
+                   <div>
+                     <small class="text-danger erName"></small>
+                   </div>
+                   <% if(locals.errors && errors.nombre) { %>
+                   <div class="text-danger">
+                    <%= errors.nombre.msg %>
+                   </div>
+                 <% } %>
+               </div>
+               <div class="control-etiqueta">
+                  <label class="etiqueta-formulario">Apellido</label>
+               </div>
+               <div class="control-formulario">
+                  <input type="text" name="apellido" class="input-form" id="inputApellido" placeholder="" value="<%= locals.old ? old.apellido : null %>">
+                  <div>
+                     <small class="text-danger erLastName"></small>
+                   </div>
+                  <% if(locals.errors && errors.apellido) { %>
+                    <div class="text-danger">
+                     <%= errors.apellido.msg %>
+                    </div>
+                  <% } %>
+               </div>
+               <div class="control-etiqueta">
+                  <label class="etiqueta-formulario">Email</label>
+               </div>
+               <div class="control-formulario">
+                   <input type="email" name="email" class="input-form" id="inputEmail" placeholder="" value="<%= locals.old ? old.email : null %>">
+                   <div>
+                     <small class="text-danger erEmail"></small>
+                   </div>
+                   <% if(locals.errors && errors.email) { %>
+                    <div class="text-danger">
+                     <%= errors.email.msg %>
+                    </div>
+                  <% } %>
+               </div>
+               <div class="control-etiqueta">
+                  <label class="etiqueta-formulario">Contraseña</label>
+               </div>
+               <div class="control-formulario">
+                   <input type="password" name="password" class="input-form" id="inputPassword" placeholder="contraseña" >
+                   <div>
+                     <small class="text-danger erPassword"></small>
+                   </div>
+                   <% if(locals.errors && errors.password) { %>
+                    <div class="text-danger">
+                     <%= errors.password.msg %>
+                    </div>
+                  <% } %>
+               </div>
+               <div class="control-formulario">
+                   <input type="password" name="confirmarpassword" class="input-form" placeholder="confirmar contraseña" >
+                   <% if(locals.errors && errors.confirmarpassword) { %>
+                    <div class="text-danger">
+                     <%= errors.confirmarpassword.msg %>
+                    </div>
+                  <% } %>
+               </div>
+               <div class="control-formulario">
+                <input type="file"   name="avatar"  placeholder="Debes eligir tu avatar...">
+                <% if(locals.errors && errors.avatar) { %>
+                    <div class="text-danger">
+                     <%= errors.avatar.msg %>
+                    </div>
+                  <% } %>
+            </div> 
+               <div class="control-checkbox">
+                  <input type="checkbox" name="terminosycondiciones" value="tyc" class="checkbox">
+                  <label for="etiqueta-checkbox">Acepto los terminos y condiciones</label>
+              </div>
+               <div class="botones">
+                   <button type="submit" class="boton-continuar" id="btnSubmit">Continuar</button>
+               </div>
+        
+           </form>
+         </div>
+     </main>
+
+     <%- include('./partials/footer.ejs') %>
+     <script src="/js/register.js"></script>
+</body>
+</html>
